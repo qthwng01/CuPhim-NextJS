@@ -12,20 +12,14 @@ const Episode = ({ episodes }: IEpisodeProps) => {
 
   // Initialize the state with the first episode link
   const playEpisode = (episode: string) => {
+    setCurrentEpisode(episode)
     localStorage.setItem('episode', episode)
     window.location.reload()
   }
 
-  const getDefaultEpisode = () => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const savedEpisode = localStorage.getItem('episode')
-      setCurrentEpisode(savedEpisode)
-    }
-    setCurrentEpisode(episodes[0]?.link_m3u8)
-  }
-
   useEffect(() => {
-    getDefaultEpisode()
+    const savedEpisode = window.localStorage.getItem('episode')
+    setCurrentEpisode(savedEpisode ? savedEpisode : episodes[0]?.link_m3u8)
   }, [currentEpisode])
 
   return (
