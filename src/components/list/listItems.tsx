@@ -92,9 +92,9 @@ const listItems = ({ params }: IListItemProps) => {
   }
 
   if (error) {
-    alert('Server error: ' + error)
+    alert('Có lỗi xảy ra. Vui lòng reload lại trang')
   }
-
+ 
   if (isLoading) {
     return <ListSkeleton />
   }

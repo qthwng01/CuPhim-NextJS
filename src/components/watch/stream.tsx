@@ -6,10 +6,10 @@ import Episode from './episode'
 import { IEpisode, IPhim } from '@/types'
 
 import { MediaPlayer, MediaProvider, Poster } from '@vidstack/react'
-import { PlyrLayout, plyrLayoutIcons } from '@vidstack/react/player/layouts/plyr'
+import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default'
 
-import '@vidstack/react/player/styles/base.css'
-import '@vidstack/react/player/styles/plyr/theme.css'
+import '@vidstack/react/player/styles/default/theme.css'
+import '@vidstack/react/player/styles/default/layouts/video.css'
 
 interface IStreamProps {
   stream: IEpisode[]
@@ -17,18 +17,18 @@ interface IStreamProps {
 }
 
 const Stream = ({ stream, poster }: IStreamProps) => {
-  const [currentEpisode, setCurrentEpisode] = useState<string | null>(stream[0]?.server_data[0]?.link_m3u8)
+  const [currentEpisode, setCurrentEpisode] = useState<string | null>('')
 
-  const getDefaultEpisode = () => {
+  const playStream = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
       const savedEpisode = localStorage.getItem('episode')
       setCurrentEpisode(savedEpisode)
     }
-    return currentEpisode
+    setCurrentEpisode(stream[0]?.server_data[0]?.link_m3u8)
   }
 
   useEffect(() => {
-    getDefaultEpisode()
+    playStream()
   }, [currentEpisode])
 
   return (
@@ -60,11 +60,12 @@ const Stream = ({ stream, poster }: IStreamProps) => {
                   load="visible"
                   title={poster?.name}
                   src={currentEpisode?.toString()}
+                  playsInline
                 >
                   <MediaProvider>
-                    <Poster src={poster?.thumb_url} alt={poster?.name} />
+                    {/* <Poster src={poster?.thumb_url} alt={poster?.name} /> */}
+                    <DefaultVideoLayout icons={defaultLayoutIcons} />
                   </MediaProvider>
-                  <PlyrLayout icons={plyrLayoutIcons} />
                 </MediaPlayer>
               </div>
               <Episode episodes={stream[0]?.server_data || []} />

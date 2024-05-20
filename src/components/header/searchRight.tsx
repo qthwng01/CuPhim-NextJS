@@ -26,32 +26,30 @@ const SearchRight = ({ isSearchMobile }: ISearchProps) => {
         newPathname = `${currentPath}search/${convertToPlusSeparated(query)}`
       }
       setQuery('')
-      return router.replace(newPathname)
+      return router.push(newPathname)
     } else {
       alert('Hãy nhập vào ô tìm kiếm.')
     }
   }
 
   return (
-
-      <form id="searchForms" onSubmit={searchP}>
-        <div className={`${isSearchMobile ? 'active__mobile' : 'header__right'}`}>
-          <input
-            onChange={(e) => setQuery(e.target.value)}
-            value={query}
-            title="search"
-            className="search__input"
-            type="text"
-            placeholder="Tìm kiếm..."
-          ></input>
-          <div title="search-btn" className="search__btn">
-            <span className="icon_search">
-              <CiSearch />
-            </span>
-          </div>
+    <form id="searchForms">
+      <div className={`${isSearchMobile ? 'active__mobile' : 'header__right'}`}>
+        <input
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
+          title="search"
+          className="search__input"
+          type="text"
+          placeholder="Tìm kiếm..."
+        ></input>
+        <div title="Search" className="search__btn">
+          <span onClick={searchP} className="icon_search">
+            <CiSearch />
+          </span>
         </div>
-      </form>
-
+      </div>
+    </form>
   )
 }
 

@@ -8,7 +8,7 @@ interface IEpisodeProps {
 }
 
 const Episode = ({ episodes }: IEpisodeProps) => {
-  const [currentEpisode, setCurrentEpisode] = useState<string | null>(episodes[0]?.link_m3u8)
+  const [currentEpisode, setCurrentEpisode] = useState<string | null>('')
 
   // Initialize the state with the first episode link
   const playEpisode = (episode: string) => {
@@ -18,10 +18,10 @@ const Episode = ({ episodes }: IEpisodeProps) => {
 
   const getDefaultEpisode = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
-      const savedEpisode = localStorage.getItem('episode') ? localStorage.getItem('episode') : currentEpisode
+      const savedEpisode = localStorage.getItem('episode')
       setCurrentEpisode(savedEpisode)
     }
-    return currentEpisode
+    setCurrentEpisode(episodes[0]?.link_m3u8)
   }
 
   useEffect(() => {

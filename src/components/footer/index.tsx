@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="col-lg-3">
-            <p>
+            <p className='credit__ft' style={{textAlign: 'center'}}>
               {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */} Dev by{' '}
               <Link href="https://github.com/qthwng01" target="_blank">
                 qthwngg
@@ -60,7 +60,6 @@ const Footer = () => {
               </Link>
               {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
             </p>
-            <p></p>
           </div>
         </div>
       </div>

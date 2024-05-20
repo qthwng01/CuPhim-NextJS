@@ -52,15 +52,15 @@ const filterList = ({ params }: IListItemProps) => {
         <div className="product__page__content">
           <div className="product__page__title">
             <div className="row">
-              <div className="col-lg-8 col-md-8 col-sm-12 col-12">
+              <div className="col-lg-8 col-md-8 col-sm-6 col-12">
                 <div className="section-title">
                   <h4>Danh sách</h4>
                 </div>
               </div>
             </div>
           </div>
-          <div className="row" style={{ alignItems: 'center' }}>
-            <div className="col-lg-2 col-md-6 col-sm-12 col-6">
+          <div className="row">
+            <div className="col-lg-2 col-md-5 col-5">
               <p>Loại phim</p>
               <select
                 onChange={(e) => setFilterObj({ ...filterObj, type: e.target.value })}
@@ -84,7 +84,7 @@ const filterList = ({ params }: IListItemProps) => {
                 </option>
               </select>
             </div>
-            <div className="col-lg-2 col-md-6 col-sm-12 col-6">
+            <div className="col-lg-2 col-md-5 col-5">
               <p>Quốc gia</p>
               <select
                 onChange={(e) => setFilterObj({ ...filterObj, country: e.target.value })}
@@ -101,7 +101,7 @@ const filterList = ({ params }: IListItemProps) => {
                 ))}
               </select>
             </div>
-            <div className="col-lg-2 col-md-6 col-sm-12 col-6">
+            <div className="col-lg-2 col-md-5 col-5">
               <p>Thể loại</p>
               <select
                 onChange={(e) => setFilterObj({ ...filterObj, genre: e.target.value })}
@@ -118,7 +118,7 @@ const filterList = ({ params }: IListItemProps) => {
                 ))}
               </select>
             </div>
-            <div className="col-lg-2 col-md-6 col-sm-12 col-6">
+            <div className="col-lg-2 col-md-5 col-5">
               <p>Năm</p>
               <select
                 onChange={(e) => setFilterObj({ ...filterObj, year: e.target.value })}
@@ -135,7 +135,7 @@ const filterList = ({ params }: IListItemProps) => {
                 ))}
               </select>
             </div>
-            <div className="col-lg-2 col-md-4 col-6">
+            <div className="col-lg-2 col-md-5 col-6">
               <p>Hành động</p>
               <button type="button" onClick={filterFilm} className="btn btn-danger">
                 Lọc phim

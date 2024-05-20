@@ -8,7 +8,7 @@ interface IGenreProps {
 const Genre = ({ genre }: IGenreProps) => {
   return (
     <ul>
-      {genre?.map((item, index: number) => (
+      {genre?.slice(0,3).map((item, index: number) => (
         <li key={index}>{item?.name}</li>
       ))}
     </ul>
