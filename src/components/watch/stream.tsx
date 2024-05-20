@@ -21,7 +21,9 @@ const Stream = ({ stream, poster }: IStreamProps) => {
 
   const playStream = () => {
     const savedEpisode = window.localStorage.getItem('episode')
-    setCurrentEpisode(savedEpisode ? savedEpisode : stream[0]?.link_m3u8)
+    if (savedEpisode)
+    setCurrentEpisode(savedEpisode)
+    setCurrentEpisode(stream[0]?.server_data[0]?.link_m3u8)
   }
 
   useEffect(() => {
