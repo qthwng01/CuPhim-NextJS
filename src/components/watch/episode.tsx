@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { IServerData } from '@/types'
 
 interface IEpisodeProps {
@@ -8,18 +9,19 @@ interface IEpisodeProps {
 }
 
 const Episode = ({ episodes }: IEpisodeProps) => {
-  const [currentEpisode, setCurrentEpisode] = useState<string | null>('')
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const episode = searchParams.get('tap')
+  const [currentEpisode, setCurrentEpisode] = useState<any>(0)
 
   // Initialize the state with the first episode link
-  const playEpisode = (episode: string) => {
-    setCurrentEpisode(episode)
-    localStorage.setItem('episode', episode)
-    window.location.reload()
+  const playEpisode = (episode: number) => {
+    const newPathname = `${window.location.pathname}?tap=${episode}`
+    return router.push(newPathname)
   }
 
   useEffect(() => {
-    const savedEpisode = window.localStorage.getItem('episode')
-    setCurrentEpisode(savedEpisode ? savedEpisode : episodes[0]?.link_m3u8)
+    setCurrentEpisode(episodes[0]?.link_m3u8)
   }, [currentEpisode])
 
   return (
@@ -31,8 +33,8 @@ const Episode = ({ episodes }: IEpisodeProps) => {
         <React.Fragment key={index}>
           <span
             id={item.name}
-            onClick={() => playEpisode(item?.link_m3u8)}
-            className={`${currentEpisode === item?.link_m3u8 ? 'active' : 'unactive'}`}
+            onClick={() => playEpisode(index + 1)}
+            className={`${index + 1 === Number(episode) ? 'active' : 'unactive'}`}
           >
             {item?.name}
           </span>

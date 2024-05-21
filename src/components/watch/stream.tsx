@@ -4,31 +4,26 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Episode from './episode'
 import { IEpisode, IPhim } from '@/types'
-
-import { MediaPlayer, MediaProvider, Poster } from '@vidstack/react'
-import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default'
-
-import '@vidstack/react/player/styles/default/theme.css'
-import '@vidstack/react/player/styles/default/layouts/video.css'
-
+import { useSearchParams } from 'next/navigation'
+import Image from 'next/image'
+import Video from 'next-video'
 interface IStreamProps {
   stream: IEpisode[]
   poster: IPhim
 }
 
 const Stream = ({ stream, poster }: IStreamProps) => {
-  const [currentEpisode, setCurrentEpisode] = useState<string | null>('')
+  const searchParams = useSearchParams()
+  const episode = searchParams.get('tap')
+  const [currentEpisode, setCurrentEpisode] = useState<string>('')
 
   const playStream = () => {
-    const savedEpisode = window.localStorage.getItem('episode')
-    if (savedEpisode)
-    setCurrentEpisode(savedEpisode)
-    setCurrentEpisode(stream[0]?.server_data[0]?.link_m3u8)
+    setCurrentEpisode(stream[0]?.server_data[Number(episode) - 1]?.link_m3u8)
   }
 
   useEffect(() => {
     playStream()
-  }, [currentEpisode])
+  }, [episode])
 
   return (
     // <!-- Breadcrumb Begin -->
@@ -52,20 +47,14 @@ const Stream = ({ stream, poster }: IStreamProps) => {
           <div className="row">
             <div className="col-lg-12">
               <div className="anime__video__player">
-                <MediaPlayer
+                <Video
+                  onLoadStart={() => playStream()}
+                  onLoadedData={() => playStream()}
                   className="anime__video__player__inside"
-                  autoPlay={false}
-                  onLoad={() => setCurrentEpisode}
-                  load="visible"
-                  title={poster?.name}
-                  src={currentEpisode?.toString()}
-                  playsInline
+                  src={currentEpisode}
                 >
-                  <MediaProvider>
-                    {/* <Poster src={poster?.thumb_url} alt={poster?.name} /> */}
-                    <DefaultVideoLayout icons={defaultLayoutIcons} />
-                  </MediaProvider>
-                </MediaPlayer>
+                  <Image slot="poster" src={poster?.poster_url} width={0} height={0} sizes="100vw" alt={poster?.name} />
+                </Video>
               </div>
               <Episode episodes={stream[0]?.server_data || []} />
             </div>

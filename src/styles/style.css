@@ -1186,6 +1186,7 @@ ol {
 
 .anime__video__player {
   margin-bottom: 70px;
+  overflow-x: hidden;
 }
 
 .anime__details__episodes {

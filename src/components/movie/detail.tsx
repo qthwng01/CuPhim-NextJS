@@ -8,8 +8,8 @@ import { CiHeart } from 'react-icons/ci'
 
 import { MediaPlayer, MediaProvider } from '@vidstack/react'
 
-import '@vidstack/react/player/styles/default/theme.css';
-import '@vidstack/react/player/styles/default/layouts/video.css';
+import '@vidstack/react/player/styles/default/theme.css'
+import '@vidstack/react/player/styles/default/layouts/video.css'
 
 import Genre from './genre'
 import Ekip from './ekip'
@@ -55,11 +55,11 @@ const Detail = ({ data }: IMovieProps) => {
                     className="anime__details__img"
                     src={data?.thumb_url}
                     priority={true}
-                    loading='eager'
+                    loading="eager"
                     quality="100"
                     width={230}
                     height={325}
-                    sizes='(max-width:480px) 50vw, (max-width:640px) 100vw'
+                    sizes="(max-width:480px) 50vw, (max-width:640px) 100vw"
                     alt="thumbnail"
                   ></Image>
                 </div>
@@ -120,7 +120,7 @@ const Detail = ({ data }: IMovieProps) => {
                         </i>
                       </Link>
                     ) : (
-                      <Link href={`/watch/${data?.slug}`} className="watch-btn">
+                      <Link href={`/watch/${data?.slug}?tap=1`} className="watch-btn">
                         <span>Xem phim</span>
                         <i className="fa fa-angle-right">
                           <IoMdArrowDropright />
