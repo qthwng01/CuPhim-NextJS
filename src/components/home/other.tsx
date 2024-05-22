@@ -17,7 +17,7 @@ const PhimMoi = ({ items }: ItemsProps) => {
           <h5>phim khác</h5>
         </div>
         <div className="filter__gallery">
-          {items?.slice(0, 8).map((item, index: number) => (
+          {items?.slice(0, 9).map((item, index: number) => (
             <div className="product__sidebar__view__item set-bg mix day years" key={index}>
               <Image
                 className="product__sidebar__img"

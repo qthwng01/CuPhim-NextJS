@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { IPhim } from '@/types'
+import Genres from '../genres/genres'
 
 interface ItemsProps {
   items: IPhim[]
@@ -41,12 +42,12 @@ const PhimHoatHinh = ({ items, title, typeList }: ItemsProps) => {
                   className="product__item__img"
                   src={process.env.NEXT_PUBLIC_URL_IMAGE + item.thumb_url}
                   style={{ width: '100%', height: 'auto' }}
-                  loading='lazy'
+                  loading="lazy"
                   quality="100"
                   width={230}
                   height={325}
                   alt="thumbnail"
-                  placeholder='blur'
+                  placeholder="blur"
                   blurDataURL={process.env.NEXT_PUBLIC_URL_IMAGE + item.thumb_url}
                 ></Image>
                 <div className="ep">
@@ -61,8 +62,7 @@ const PhimHoatHinh = ({ items, title, typeList }: ItemsProps) => {
               </div>
               <div className="product__item__text">
                 <ul>
-                  <li>Active</li>
-                  <li>Movie</li>
+                  <Genres genre={item.category} />
                 </ul>
                 <h5>
                   <Link href={`/movie/${item.slug}`}>{item.name}</Link>

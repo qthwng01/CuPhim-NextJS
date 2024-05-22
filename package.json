@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vidstack/react": "^1.11.21",
+    "hls.js": "^1.5.8",
     "next": "14.2.3",
     "next-video": "^1.0.6",
     "react": "^18",

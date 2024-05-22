@@ -14,7 +14,7 @@ const Ekip = ({ actor, director }: IEkipProps) => {
         Diễn viên:{' '}
         {actor?.map((item, index: number) => (
           <React.Fragment key={index}>
-            {item}
+            {item ? item : 'Đang cập nhật'}
             {index !== actor.length - 1 && ', '}
           </React.Fragment>
         ))}

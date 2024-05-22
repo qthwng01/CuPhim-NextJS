@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Episode from './episode'
 import { IEpisode, IPhim } from '@/types'
 import { useSearchParams } from 'next/navigation'
-import Image from 'next/image'
-import Video from 'next-video'
+import { Suspense } from 'react'
+
 interface IStreamProps {
   stream: IEpisode[]
   poster: IPhim
@@ -18,7 +18,7 @@ const Stream = ({ stream, poster }: IStreamProps) => {
   const [currentEpisode, setCurrentEpisode] = useState<string>('')
 
   const playStream = () => {
-    setCurrentEpisode(stream[0]?.server_data[Number(episode) - 1]?.link_m3u8)
+    setCurrentEpisode(stream[0]?.server_data[Number(episode) - 1]?.link_embed)
   }
 
   useEffect(() => {
@@ -47,14 +47,20 @@ const Stream = ({ stream, poster }: IStreamProps) => {
           <div className="row">
             <div className="col-lg-12">
               <div className="anime__video__player">
-                <Video
-                  onLoadStart={() => playStream()}
-                  onLoadedData={() => playStream()}
-                  className="anime__video__player__inside"
-                  src={currentEpisode}
-                >
-                  <Image slot="poster" src={poster?.poster_url} width={0} height={0} sizes="100vw" alt={poster?.name} />
-                </Video>
+                <Suspense fallback={<p style={{color: 'white'}}>Loading...</p>}>
+                  <iframe
+                    src={currentEpisode.toString()}
+                    // width={500}
+                    // height={500}
+                    className='anime__video__player__inside'
+                    frameBorder="0"
+                    loading='eager'
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    name={poster?.name}
+                    allowFullScreen
+                    title={poster?.name}
+                  ></iframe>
+                </Suspense>
               </div>
               <Episode episodes={stream[0]?.server_data || []} />
             </div>

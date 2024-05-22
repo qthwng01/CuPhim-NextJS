@@ -9,14 +9,9 @@ const Genre = ({ genre }: IGenreProps) => {
   return (
     <li>
       <span>Thể loại:</span>
-      {genre?.map((item, index: number) => (
-        <React.Fragment key={index}>
-          {item?.name}
-          {index !== item?.id.length - 1 && ', '}
-        </React.Fragment>
-      ))}
+      {genre?.map((item) => item?.name).join(', ')}
     </li>
   )
 }
-
+  
 export default Genre

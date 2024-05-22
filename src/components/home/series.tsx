@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { IPhim } from '@/types'
+import Genres from '../genres/genres'
 
 interface ItemsProps {
   items: IPhim[]
@@ -12,9 +13,6 @@ interface ItemsProps {
 }
 
 const PhimBo = ({ items, title, typeList }: ItemsProps) => {
-  // if (error) {
-  //   alert('Loaded data failed: ' + error)
-  // }
 
   return (
     <div className="popular__product">
@@ -61,8 +59,7 @@ const PhimBo = ({ items, title, typeList }: ItemsProps) => {
               </div>
               <div className="product__item__text">
                 <ul>
-                  <li>Active</li>
-                  <li>Movie</li>
+                <Genres genre={item.category} />
                 </ul>
                 <h5>
                   <Link href={`/movie/${item.slug}`}>{item.name}</Link>

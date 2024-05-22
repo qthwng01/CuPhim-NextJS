@@ -6,7 +6,7 @@ const nextConfig = {
 //     ignoreBuildErrors: true,
 //   },
   images: {
-    domains: ['img.phimapi.com', 'img.ophim.live'],
+    domains: ['img.phimapi.com', 'img.ophim.live', 'apii.online'],
   },
 }
 

@@ -6,9 +6,9 @@ import Image from 'next/image'
 import { IPhim } from '@/types'
 import { useSearchParams, useRouter } from 'next/navigation'
 import ListSkeleton from '@/components/skeleton/skeleton'
+import { blurBase64 } from '@/constants'
 
-// import useSWR from 'swr'
-// import useFetcher from '@/hooks/useFetcher'
+import Genres from '../genres/genres'
 import Pagination from '../pagination'
 
 interface IListItemProps {
@@ -26,19 +26,6 @@ const listItems = ({ params }: IListItemProps) => {
   const [data, setData] = useState<any>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
-
-  // Fetching data & query filter
-  // const { data, error, isLoading } = useSWR(
-  //   `${process.env.NEXT_PUBLIC_DANH_SACH}/${params}?page=${currentPage ? currentPage : 1}&country=${
-  //     countryValue ? countryValue : ''
-  //   }&category=${categoryValue ? categoryValue : ''}&year=${yearValue ? yearValue : ''}`,
-  //   useFetcher,
-  //   {
-  //     revalidateIfStale: false,
-  //     revalidateOnFocus: false,
-  //     revalidateOnReconnect: false,
-  //   }
-  // )
 
   const handleFilter = async () => {
     setIsLoading(true)
@@ -94,7 +81,7 @@ const listItems = ({ params }: IListItemProps) => {
   if (error) {
     alert('Có lỗi xảy ra. Vui lòng reload lại trang')
   }
- 
+
   if (isLoading) {
     return <ListSkeleton />
   }
@@ -115,6 +102,8 @@ const listItems = ({ params }: IListItemProps) => {
                 height={0}
                 sizes="100vw"
                 alt="poster"
+                placeholder='blur'
+                blurDataURL={blurBase64}
               ></Image>
               <div className="ep">
                 {item.lang} - {item.quality}
@@ -128,8 +117,7 @@ const listItems = ({ params }: IListItemProps) => {
             </div>
             <div className="product__item__text">
               <ul>
-                <li>Active</li>
-                <li>Movie</li>
+                <Genres genre={item.category} />
               </ul>
               <h5>
                 <Link href={`/movie/${item.slug}`}>{item.name}</Link>

@@ -546,7 +546,7 @@ ol {
 .nav__mobile {
   width: 100%;
   height: 100%;
-  padding-left: 1rem;
+  padding: 0 1rem;
 }
 
 .nav__mobile form {
@@ -674,6 +674,11 @@ ol {
   color: #ffffff;
   font-weight: 700;
   line-height: 26px;
+  text-transform: capitalize;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .product__sidebar .section-title h5 {
@@ -733,8 +738,6 @@ ol {
 
 .product__sidebar__img {
   width: 100%;
-  min-height: 300px;
-  max-height: 300px;
   object-fit: cover;
   object-position: top;
   border-radius: 5px;
@@ -1189,6 +1192,12 @@ ol {
   overflow-x: hidden;
 }
 
+.anime__video__player__inside {
+  width: 100%;
+  height: 550px;
+  border-radius: 10px;
+}
+
 .anime__details__episodes {
   margin-bottom: 35px;
 }
@@ -1586,6 +1595,9 @@ ol {
   }
   .anime__video__player {
     margin-bottom: 40px;
+  }
+  .anime__video__player__inside {
+    height: 250px;
   }
 }
 

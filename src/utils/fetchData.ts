@@ -35,6 +35,7 @@ export async function getStreamMovie(slug: string) {
   return res
 }
 
+
 export async function getMovieDetail(slug: string) {
   const res = await useFetcher(`${process.env.NEXT_PUBLIC_TT_PHIM}/${slug}`)
   return res

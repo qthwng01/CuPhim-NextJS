@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { IMovie } from '@/types'
+import { blurBase64 } from '@/constants'
 
 import { IoMdArrowDropright } from 'react-icons/io'
 import { CiHeart } from 'react-icons/ci'
@@ -28,6 +29,7 @@ const Detail = ({ data }: IMovieProps) => {
     tvshows: 'TV Show',
   }
 
+ 
   return (
     <>
       <div className="breadcrumb-option">
@@ -61,6 +63,8 @@ const Detail = ({ data }: IMovieProps) => {
                     height={325}
                     sizes="(max-width:480px) 50vw, (max-width:640px) 100vw"
                     alt="thumbnail"
+                    placeholder='blur'
+                    blurDataURL={blurBase64}
                   ></Image>
                 </div>
               </div>
@@ -153,7 +157,7 @@ const Detail = ({ data }: IMovieProps) => {
                     </MediaPlayer>
                   </div>
                 ) : (
-                  <h5 style={{ color: 'white' }}>Không có trailer.</h5>
+                  <span style={{ color: 'white' }}>Không có trailer.</span>
                 )}
               </div>
             </div>

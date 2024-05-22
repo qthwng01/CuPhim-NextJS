@@ -64,7 +64,7 @@ const Carousel = ({ carousels }: ICarouselProps) => {
             />
             <div className="text">
               <h2 className="title">{item?.name}</h2>
-              <p>{item?.origin_name}</p>
+              <p>{item?.origin_name} - (Phim sắp chiếu)</p>
               <Link href={`/movie/${item?.slug}`} className="btn__watch">
                 Chi tiết
               </Link>

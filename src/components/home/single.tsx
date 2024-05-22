@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { IPhim } from '@/types'
-import Genre from './genre'
+import Genres from '../genres/genres'
 
 interface ItemsProps {
   items: IPhim[]
@@ -61,7 +61,9 @@ const PhimLe = ({ items, title, typeList }: ItemsProps) => {
                 </div>
               </div>
               <div className="product__item__text">
-                <Genre genre={item?.category} />
+                <ul>
+                  <Genres genre={item.category} />
+                </ul>
                 <h5>
                   <Link href={`/movie/${item.slug}`}>{item.name}</Link>
                 </h5>
